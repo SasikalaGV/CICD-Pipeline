@@ -1,5 +1,5 @@
 # Small Java 17 runtime image
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:17-jre-alpine
 
 # Folder inside the container
 WORKDIR /app
