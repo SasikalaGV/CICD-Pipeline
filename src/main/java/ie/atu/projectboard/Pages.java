@@ -13,7 +13,8 @@ public class Pages {
     public static final String PROJECT_NOTE =
             "ATU Project Board is a small Java web application built for my DevOps module. "
           + "It shows my student details and lets visitors leave comments on the project. "
-          + "The application is used to demonstrate a CI/CD pipeline.";
+          + "The application is used to demonstrate a CI/CD pipeline."
+          + "(deployed automatically by GitHub Actions)";
     // -------------------------------------------
 
     // Home page: student details and project note
