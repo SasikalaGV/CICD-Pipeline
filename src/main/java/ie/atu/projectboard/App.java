@@ -48,6 +48,7 @@ public class App {
                 if (error == null) {
                     comments.add(new Comment(name, email, text));
                     message = "Thank you, your comment was added.";
+                    System.out.println("New comment added. Total comments: " + comments.size());
                 } else {
                     message = error;
                 }
@@ -61,7 +62,9 @@ public class App {
     }
 
     // Sends an HTML page back to the browser
-    private static void send(HttpExchange exchange, int status, String html) throws IOException {
+        private static void send(HttpExchange exchange, int status, String html) throws IOException {
+        System.out.println(java.time.LocalDateTime.now() + " " + exchange.getRequestMethod() + " "
+                + exchange.getRequestURI().getPath() + " " + status);
         byte[] bytes = html.getBytes(StandardCharsets.UTF_8);
         exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
         exchange.sendResponseHeaders(status, bytes.length);

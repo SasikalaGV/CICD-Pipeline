@@ -79,7 +79,7 @@ jobs:
           ssh -i key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST "
             docker pull ghcr.io/sasikalagv/atu-project-board:latest &&
             (docker rm -f atu-project-board || true) &&
-            docker run -d --name atu-project-board -p 80:8080 --restart unless-stopped ghcr.io/sasikalagv/atu-project-board:latest &&
+            docker run -d --name atu-project-board -p 80:8080 --restart unless-stopped --log-driver=awslogs --log-opt awslogs-region=eu-west-2 --log-opt awslogs-group=atu-project-board --log-opt awslogs-create-group=true ghcr.io/sasikalagv/atu-project-board:latest &&
             docker image prune -f
           "
           rm -f key.pem
