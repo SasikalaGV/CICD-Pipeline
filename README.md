@@ -524,6 +524,16 @@ I also set up an alarm called atu-high-cpu, which keeps an eye on the server's C
 When I changed the condition to the CPU Utilization greater than 0.1 just to get the failure email and I got that in a minute. 
 
 ![Alarm email](<images/Alarm-Result for less than 0.1 threashold.png>)
+
+
+### Notifications
+
+After every pull request analysis, SonarCloud's bot posts a comment on the pull request with the
+quality gate result: issues found, coverage on new code and duplication. Because I opened the pull
+request, GitHub also sends me that comment by email, so I see straight away whether a change passed
+or failed without opening SonarCloud or GitHub.
+
+![SonarCloud result emailed by GitHub](images/SonarCloud-Bot-Email.png)
 ---
 
 
