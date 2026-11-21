@@ -15,7 +15,7 @@ public class Pages {
           + "It shows my student details and lets visitors leave comments on the project. "
           + "The application is used to demonstrate a CI/CD pipeline."
           + "(deployed automatically by GitHub Actions)"
-          + "Demo Page";
+          + "Demo Page- Heading: ATU Project Board, Student Details, About the Project, Comments, Leave a comment, All comments";
     // -------------------------------------------
 
     // Home page: student details and project note
