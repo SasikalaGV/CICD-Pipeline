@@ -23,6 +23,13 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         int port = 8080;
+        startServer(port);
+        System.out.println("ATU Project Board running at http://localhost:" + port);
+    }
+
+    // Creates and starts the server. Returns it so tests can find the port and stop it.
+    // Use port 0 to let the computer pick any free port (useful in tests).
+    public static HttpServer startServer(int port) throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
         // Home page
@@ -47,8 +54,8 @@ public class App {
                 String error = Pages.validate(name, email, text);
                 if (error == null) {
                     comments.add(new Comment(name, email, text));
-                    message = "Thank you, your comment was added.";
                     System.out.println("New comment added. Total comments: " + comments.size());
+                    message = "Thank you, your comment was added.";
                 } else {
                     message = error;
                 }
@@ -58,13 +65,17 @@ public class App {
         });
 
         server.start();
-        System.out.println("ATU Project Board running at http://localhost:" + port);
+        return server;
     }
 
     // Sends an HTML page back to the browser
-        private static void send(HttpExchange exchange, int status, String html) throws IOException {
-        System.out.println(java.time.LocalDateTime.now() + " " + exchange.getRequestMethod() + " "
-                + exchange.getRequestURI().getPath() + " " + status);
+    private static void send(HttpExchange exchange, int status, String html) throws IOException {
+        // Log each request for CloudWatch. Only log known values, never raw user input (prevents log injection)
+        String path = exchange.getRequestURI().getPath();
+        String page = path.equals("/") ? "/" : path.equals("/comments") ? "/comments" : "other";
+        String method = exchange.getRequestMethod().equals("POST") ? "POST" : "GET";
+        System.out.println(java.time.LocalDateTime.now() + " " + method + " " + page + " " + status);
+
         byte[] bytes = html.getBytes(StandardCharsets.UTF_8);
         exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
         exchange.sendResponseHeaders(status, bytes.length);
