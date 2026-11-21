@@ -14,7 +14,8 @@ public class Pages {
             "ATU Project Board is a small Java web application built for my DevOps module. "
           + "It shows my student details and lets visitors leave comments on the project. "
           + "The application is used to demonstrate a CI/CD pipeline."
-          + "(deployed automatically by GitHub Actions)";
+          + "(deployed automatically by GitHub Actions)"
+          + "Demo Page";
     // -------------------------------------------
 
     // Home page: student details and project note
